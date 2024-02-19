@@ -41,6 +41,7 @@
     group: "{{ bind9_group }}"
     mode: "0755"
   when: bind9_authoritative | default()
+  become: true
 
 - name: Install bind9 authoritative include files
   ansible.builtin.template:
@@ -75,6 +76,7 @@
     - Reload bind9
   tags:
     - role:bind9:zones
+  become: true
 
 - name: Install static bind9 zone files
   ansible.builtin.copy:
@@ -93,6 +95,7 @@
     - Reload bind9
   tags:
     - role:bind9:zones
+  become: true
 
 - name: Check validity of zone files
   ansible.builtin.command: named-checkzone {{ item.name }} {{ bind9_zonedir }}/db.{{ item.name }}
