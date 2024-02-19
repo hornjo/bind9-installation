@@ -32,6 +32,7 @@
     group: "{{ bind9_group }}"
     mode: "02775"
   when: bind9_authoritative | default()
+  become: true
 
 - name: Create bind9 directory for master zone includes
   ansible.builtin.file:
