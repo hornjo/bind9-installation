@@ -1,6 +1,6 @@
 ---
 # User and group for bind
-bind9_user: bind
+bind9_user: user
 bind9_group: bind
 
 # Run bind as a DNS recursor?
