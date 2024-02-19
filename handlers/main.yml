@@ -3,11 +3,13 @@
   ansible.builtin.service:
     name: bind9
     state: restarted
+  become: true
 
 - name: Reload bind9
   ansible.builtin.service:
     name: bind9
     state: reloaded
+  become: true
 
 - name: Zone file change
   ansible.builtin.debug:
