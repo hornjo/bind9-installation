@@ -1,7 +1,7 @@
 ---
 - name: Install bind9 packages
   ansible.builtin.apt:
-    pkg: "{{ bind9_packages }}"
+    name: bind9
     state: present
     cache_valid_time: 600
 
