@@ -1,0 +1,25 @@
+---
+- name: Install bind9 packages
+  ansible.builtin.apt:
+    pkg: "{{ bind9_packages }}"
+    state: present
+    cache_valid_time: 600
+
+- name: Setup logs
+  when: bind9_named_logging
+  block:
+    - name: Ensure existence of the log directory
+      ansible.builtin.file:
+        path: "{{ bind9_log_path }}"
+        state: directory
+        owner: "{{ bind9_user }}"
+        group: "{{ bind9_group }}"
+        mode: "0755"
+
+    - name: Configure log rotate for bind9
+      ansible.builtin.template:
+        src: "{{ bind9_templates | default('') }}logrotate.d/bind.j2"
+        dest: /etc/logrotate.d/bind
+        owner: root
+        group: "{{ bind9_group }}"
+        mode: "0644"

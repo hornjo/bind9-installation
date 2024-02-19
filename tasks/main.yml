@@ -1,2 +1,6 @@
 ---
-# tasks file for bind9-installation
+- name: Install bind9
+  ansible.builtin.include_tasks: installation.yml
+
+- name: Configure bind9
+  ansible.builtin.include_tasks: configuration.yml
