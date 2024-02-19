@@ -13,6 +13,7 @@
     - Reload bind9
   # Variable register for eventual use outside the role
   register: bind9_named_conf
+  become: true
 
 - name: Check validity of named.conf
   ansible.builtin.command: named-checkconf
@@ -53,6 +54,7 @@
   notify:
     - Zone file change
     - Reload bind9
+  become: true
 
 - name: Configure dnssec
   ansible.builtin.include_tasks: dnssec.yml

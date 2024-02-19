@@ -4,9 +4,11 @@
     name: bind9
     state: present
     cache_valid_time: 600
+  become: true
 
 - name: Setup logs
   when: bind9_named_logging
+  become: true
   block:
     - name: Ensure existence of the log directory
       ansible.builtin.file:
