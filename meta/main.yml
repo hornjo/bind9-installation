@@ -1,5 +1,4 @@
 galaxy_info:
-  standalone: true
   author: hornjo
   description: Installs and maintains bind9 installation and configuration.
   license: GPL-2.0
