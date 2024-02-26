@@ -1,0 +1,23 @@
+{% for key, value in bind9_zones_forward %}
+zone "{{ key }}" {
+    type primary;
+    file "/etc/bind/{{ key }}";
+};
+{% endfor %}
+
+{% for key, value in bind9_zones_reverse %}
+zone "{{ key }}" {
+    type primary;
+    file "/etc/bind/{{ key }}";
+};
+{% endfor %}
+
+{% for item in bind9_zones_remote %}
+zone "{{ item.domain }}" {
+    type forward;
+    forwarders {
+        {{ item.remote_dns }};
+    };
+    forward only;
+};
+{% endfor %}

@@ -1,0 +1,17 @@
+{% for item in bind9_acl %}
+acl allowed-clients {
+    {{ item }};
+};
+{% endfor %}
+
+
+options {
+    directory "/var/cache/bind";
+    forwarders {
+        {% for item in bind9_forwarders %}
+        {{ item }};
+        {% endfor %}
+    };
+    allow-recursion { allowed-clients; };
+    allow-query { any; };
+};

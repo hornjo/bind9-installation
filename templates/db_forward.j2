@@ -1,0 +1,18 @@
+$TTL 2D
+@       IN      SOA     {{ ansible_fqdn }}. {{ bind9_mail_address }}. (
+                        2006032201      ; Serial
+                                8H      ; Refresh
+                                2H      ; Retry
+                                4W      ; Expire
+                                3H )    ; NX (TTL Negativ Cache)
+
+@                               IN      NS      {{ ansible_fqdn }}.
+                                IN      A       {{ ansible_default_ipv4.address }}
+
+{{ ansible_hostname }}          IN      A       {{ ansible_default_ipv4.address }}
+dns                             IN      CNAME   {{ ansible_hostname }}
+{% for key, value in bind9_zones_forward %}
+	{% for item in key %}
+		{{ item.value1 }}				IN		{{ item.record_type }}	{{ item.value2 }}
+	{% endfor %}
+{% endfor %}

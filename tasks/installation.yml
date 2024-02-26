@@ -3,5 +3,4 @@
   ansible.builtin.apt:
     name: bind9
     state: present
-    cache_valid_time: 600
   become: true

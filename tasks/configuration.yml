@@ -1,1 +1,12 @@
 ---
+- name: Templating of the config files
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: /etc/bind
+    mode: "0644"
+  loop:
+    - named.conf.local
+    - named.conf.options.j2
+    - db_forward.j2
+    - db_reverse.j2
+  notify: Restart bind9

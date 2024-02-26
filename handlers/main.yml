@@ -10,7 +10,3 @@
     name: bind9
     state: reloaded
   become: true
-
-- name: Zone file change
-  ansible.builtin.debug:
-    msg: "dummy handler"
