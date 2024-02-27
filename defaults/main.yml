@@ -13,7 +13,7 @@ bind9_zones_forward:
     - {record_type: A, value1: firewall, value2: 10.10.1.254}
 bind9_zones_reverse:
   1.10.10:    # reverse lookup zone
-    - {ip: 254, name: firewall}
+    - {ip: 254, name: firewall.test.local}
 bind9_zones_remote:
   - {domain: remote.domain.local, remote_dns: 10.0.0.1}
   - {domain: 0.0.10.in-addr.arpa, remote_dns: 10.0.0.1}
