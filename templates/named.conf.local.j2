@@ -13,10 +13,10 @@ zone "{{ item }}" {
 {% endfor %}
 
 {% for item in bind9_zones_remote %}
-zone "{{ item.domain }}" {
+zone "{{ domain }}" {
     type forward;
     forwarders {
-        {{ item.remote_dns }};
+        {{ remote_dns }};
     };
     forward only;
 };

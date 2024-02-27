@@ -13,6 +13,6 @@ $TTL 2D
 dns                             IN      CNAME   {{ ansible_hostname }}
 {% for item in bind9_zones_forward %}
 	{% for key in item %}
-		{{ key.value1 }}				IN		{{ key.record_type }}	{{ key.value2 }}
+		{{ value1 }}				IN		{{ record_type }}	{{ value2 }}
 	{% endfor %}
 {% endfor %}
