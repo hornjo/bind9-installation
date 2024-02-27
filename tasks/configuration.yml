@@ -1,13 +1,27 @@
 ---
-- name: Templating of the config files
-  ansible.builtin.template:
-    src: "{{ item }}"
-    dest: "/etc/bind/{{ item | regex_replace('\\.j2$', '') }}"
-    mode: "0644"
-  loop:
-    - named.conf.local.j2
-    - named.conf.options.j2
-    - db_forward.j2
-    - db_reverse.j2
+- name: Configure bind9
   notify: Restart bind9
   become: true
+  block:
+    - name: Templating of the config files
+      ansible.builtin.template:
+        src: "{{ item }}"
+        dest: "/etc/bind/{{ item | regex_replace('\\.j2$', '') }}"
+        mode: "0644"
+      loop:
+        - named.conf.local.j2
+        - named.conf.options.j2
+
+    - name: Templating of the forward zone files
+      ansible.builtin.template:
+        src: db_forward.j2
+        dest: "/etc/bind/db.{{ item.key }}"
+        mode: "0644"
+      loop: "{{ bind9_zones_forward }}"
+
+    - name: Templating of the reverse zone files
+      ansible.builtin.template:
+        src: db_forward.j2
+        dest: "/etc/bind/db.{{ item.key }}"
+        mode: "0644"
+      loop: "{{ bind9_zones_reverse }}"
