@@ -12,6 +12,6 @@ $TTL 2D
 {{ ansible_hostname }}          IN      A       {{ ansible_default_ipv4.address }}
 {% for zone, records in bind9_zones_reverse.items() %}
 {% for record in records %}
-{{ record.ip }}                     IN		PTR	{{ record.name }}
+{{ record.ip }}         IN      PTR	{{ record.name }}
 {% endfor %}
 {% endfor %}
