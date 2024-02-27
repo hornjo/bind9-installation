@@ -6,7 +6,8 @@ bind9_forwarders:
   - 1.1.1.1
   - 1.0.0.1
 bind9_mail_address: info.test.local   # @ has to be replaced with a .
-
+bind9_transfer:
+  - 10.0.0.1
 bind9_zones_forward:
   test.local:   # forward lookup zone
     - {record_type: A, value1: firewall, value2: 10.10.1.254}

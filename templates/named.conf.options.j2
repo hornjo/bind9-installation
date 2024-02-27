@@ -12,4 +12,9 @@ options {
     {% endfor %}
     };
     allow-query { allowed-clients; };
+    allow-transfer { 
+    {% for item in bind9_transfer %}
+        {{ item }};
+    {% endfor %}
+    };
 };
