@@ -11,8 +11,8 @@ $TTL 2D
 
 {{ ansible_hostname }}          IN      A       {{ ansible_default_ipv4.address }}
 dns                             IN      CNAME   {{ ansible_hostname }}
-{% for key, value in bind9_zones_forward %}
-	{% for item in key %}
-		{{ item.value1 }}				IN		{{ item.record_type }}	{{ item.value2 }}
+{% for item in bind9_zones_forward %}
+	{% for key in item %}
+		{{ key.value1 }}				IN		{{ key.record_type }}	{{ key.value2 }}
 	{% endfor %}
 {% endfor %}

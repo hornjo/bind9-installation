@@ -1,14 +1,14 @@
-{% for key, value in bind9_zones_forward %}
-zone "{{ key }}" {
+{% for item in bind9_zones_forward %}
+zone "{{ item }}" {
     type primary;
-    file "/etc/bind/{{ key }}";
+    file "/etc/bind/{{ item }}";
 };
 {% endfor %}
 
-{% for key, value in bind9_zones_reverse %}
-zone "{{ key }}" {
+{% for item, value in bind9_zones_reverse %}
+zone "{{ item }}" {
     type primary;
-    file "/etc/bind/{{ key }}";
+    file "/etc/bind/{{ item }}";
 };
 {% endfor %}
 

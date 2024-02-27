@@ -1,9 +1,8 @@
-{% for item in bind9_acl %}
 acl allowed-clients {
+{% for item in bind9_acl %}
     {{ item }};
-};
 {% endfor %}
-
+};
 
 options {
     directory "/var/cache/bind";
