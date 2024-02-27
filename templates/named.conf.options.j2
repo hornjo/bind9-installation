@@ -7,9 +7,9 @@ acl allowed-clients {
 options {
     directory "/var/cache/bind";
     forwarders {
-        {% for item in bind9_forwarders %}
+    {% for item in bind9_forwarders %}
         {{ item }};
-        {% endfor %}
+    {% endfor %}
     };
     allow-query { allowed-clients; };
 };
