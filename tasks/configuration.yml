@@ -2,10 +2,10 @@
 - name: Templating of the config files
   ansible.builtin.template:
     src: "{{ item }}"
-    dest: /etc/bind
+    dest: "/etc/bind/{{ item | regex_replace('\\.j2$', '') }}"
     mode: "0644"
   loop:
-    - named.conf.local
+    - named.conf.local.j2
     - named.conf.options.j2
     - db_forward.j2
     - db_reverse.j2
