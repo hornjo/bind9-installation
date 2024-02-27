@@ -34,6 +34,8 @@ Including an example of how to use your role (for instance, with variables passe
       - 1.1.1.1
       - 1.0.0.1
     bind9_mail_address: info.k8s
+    bind9_transfer: # Allows tranfer as secondary
+      - 10.0.0.1
     bind9_zones_forward:
       k8s:
         - {record_type: A, value1: firewall, value2: 10.10.1.254}
