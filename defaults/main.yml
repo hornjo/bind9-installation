@@ -15,3 +15,4 @@ bind9_zones_reverse:
     - {ip: 254, name: firewall}
 bind9_zones_remote:
   - {domain: remote.domain.local, remote_dns: 10.0.0.1}
+  - {domain: 0.0.10.in-addr.arpa, remote_dns: 10.0.0.1}

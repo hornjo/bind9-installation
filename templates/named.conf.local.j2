@@ -14,10 +14,8 @@ zone "{{ zone }}.in-addr.arpa" {
 
 {% for item in bind9_zones_remote %}
 zone "{{ item.domain }}" {
-    type forward;
-    forwarders {
-        {{ item.remote_dns }};
-    };
-    forward only;
+    type secondary;
+    file "/var/cache/bind/{{ item.domain }}.db";
+    primaries { {{ item.remote_dns }}; };
 };
 {% endfor %}

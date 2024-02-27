@@ -11,6 +11,5 @@ options {
         {{ item }};
         {% endfor %}
     };
-    allow-recursion { allowed-clients; };
-    allow-query { any; };
+    allow-query { allowed-clients; };
 };
