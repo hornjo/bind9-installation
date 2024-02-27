@@ -1,5 +1,24 @@
 ---
-- hosts: localhost
-  remote_user: root
+- name: Install bind9 dns
+  hosts: mgm-vm
   roles:
-    - bind9-installation
+    - hornjo.bind9-installation
+  vars:
+    bind9_acl:
+      - localhost
+      - localnets
+      - 10.51.0.0/24
+      - 10.49.0.0/24
+    bind9_forwarders:
+      - 1.1.1.1
+      - 1.0.0.1
+    bind9_mail_address: info.k8s
+    bind9_zones_forward:
+      k8s:
+        - {record_type: A, value1: firewall, value2: 10.10.1.254}
+    bind9_zones_reverse:
+      1.10.10:
+        - {ip: 254, name: firewall.k8s}
+    bind9_zones_remote:
+      - {domain: remote.domain.local, remote_dns: 10.0.0.1}
+      - {domain: 0.0.10.in-addr.arpa, remote_dns: 10.0.0.1}
