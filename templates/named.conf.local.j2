@@ -13,7 +13,7 @@ zone "{{ zone }}.in-addr.arpa" {
 {% endfor %}
 
 {% for item in bind9_zones_remote %}
-zone "{{ item.domain }}" {
+zone "{{ item.domain }}" IN {
     type secondary;
     file "/var/cache/bind/{{ item.domain }}.db";
     primaries { {{ item.remote_dns }}; };
