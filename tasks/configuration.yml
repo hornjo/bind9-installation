@@ -10,3 +10,4 @@
     - db_forward.j2
     - db_reverse.j2
   notify: Restart bind9
+  become: true

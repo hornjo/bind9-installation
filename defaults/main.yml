@@ -11,7 +11,7 @@ bind9_zones_forward:
   test.local:   # forward lookup zone
     - {record_type: A, value1: firewall, value2: 10.10.1.254}
 bind9_zones_reverse:
-  0.1.10.10:    # reverse lookup zone
+  1.10.10:    # reverse lookup zone
     - {ip: 254, name: firewall}
 bind9_zones_remote:
   - {domain: remote.domain.local, remote_dns: 10.0.0.1}
