@@ -17,11 +17,11 @@
         src: db_forward.j2
         dest: "/etc/bind/db.{{ item.key }}"
         mode: "0644"
-      loop: "{{ bind9_zones_forward }}"
+      loop: "{{ bind9_zones_forward.keys() }}"
 
     - name: Templating of the reverse zone files
       ansible.builtin.template:
-        src: db_forward.j2
-        dest: "/etc/bind/db.{{ item.key }}"
+        src: db_reverse.j2
+        dest: "/etc/bind/db.{{ item }}"
         mode: "0644"
-      loop: "{{ bind9_zones_reverse }}"
+      loop: "{{ bind9_zones_reverse.keys() }}"

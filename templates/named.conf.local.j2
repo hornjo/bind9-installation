@@ -1,14 +1,14 @@
 {% for zone, records in bind9_zones_forward.items() %}
 zone "{{ zone }}" {
     type primary;
-    file "/etc/bind/{{ zone }}";
+    file "/etc/bind/db.{{ zone }}";
 };
 {% endfor %}
 
 {% for zone, records in bind9_zones_reverse.items() %}
 zone "{{ zone }}.in-addr.arpa" {
     type primary;
-    file "/etc/bind/{{ zone }}";
+    file "/etc/bind/db.{{ zone }}";
 };
 {% endfor %}
 
