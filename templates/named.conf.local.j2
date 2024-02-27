@@ -1,22 +1,22 @@
-{% for item in bind9_zones_forward %}
-zone "{{ item }}" {
+{% for zone, records in bind9_zones_forward.items() %}
+zone "{{ zone }}" {
     type primary;
-    file "/etc/bind/{{ item }}";
+    file "/etc/bind/{{ zone }}";
 };
 {% endfor %}
 
-{% for item, value in bind9_zones_reverse %}
-zone "{{ item }}" {
+{% for zone, records in bind9_zones_reverse.items() %}
+zone "{{ zone }}" {
     type primary;
-    file "/etc/bind/{{ item }}";
+    file "/etc/bind/{{ zone }}";
 };
 {% endfor %}
 
 {% for item in bind9_zones_remote %}
-zone "{{ item['domain'] }}" {
+zone "{{ item.domain }}" {
     type forward;
     forwarders {
-        {{ item['remote_dns'] }};
+        {{ item.remote_dns }};
     };
     forward only;
 };
