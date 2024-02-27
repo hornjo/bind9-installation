@@ -15,7 +15,7 @@
     - name: Templating of the forward zone files
       ansible.builtin.template:
         src: db_forward.j2
-        dest: "/etc/bind/db.{{ item.key }}"
+        dest: "/etc/bind/db.{{ item }}"
         mode: "0644"
       loop: "{{ bind9_zones_forward.keys() }}"
 
